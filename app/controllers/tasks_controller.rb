@@ -19,6 +19,9 @@ class TasksController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
   end
 
@@ -37,7 +40,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :content)
+    params.require(:task).permit(:title, :content, :start_time, :end_time)
   end
 
   def find_task
