@@ -42,6 +42,16 @@ RSpec.feature 'Tasks', type: :feature do
     end
   end
 
+  describe 'show a task' do
+    it do
+      task = Task.create(title: title, content: content)
+      visit task_path(task)
+
+      expect(page).to have_content(title)
+      expect(page).to have_content(content)
+    end
+  end
+
   private
   def create_task(title, content)
     visit new_task_path
