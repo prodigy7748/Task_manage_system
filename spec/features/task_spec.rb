@@ -5,7 +5,7 @@ RSpec.feature 'Tasks', type: :feature do
   let(:content) { Faker::Lorem.paragraph }
 
   describe 'user visit task index page' do
-    senerio 'tasks show on index page' do
+    scenario 'tasks show on index page' do
       3.times do 
         FactoryBot.create(:task)
       end
@@ -19,42 +19,35 @@ RSpec.feature 'Tasks', type: :feature do
 
   describe 'user creates a new task' do
     scenario 'with title and content' do
-      visit new_task_path
-      fill_in 'Title', with: title
-      fill_in 'Content', with: content
-      click_button 'Create Task'
-
-      expect(Task.all.size).to eq 1
+      create_task(title, content)
       expect(page).to have_content('新增任務成功！')
       expect(page).to have_content(title)
       expect(page).to have_content(content)
     end
 
     scenario 'without title and content' do
-      visit new_task_path
-      fill_in 'Title', with: ''
-      fill_in 'Content', with: ''
-      click_button 'Create Task'
-
+      create_task(nil, nil)
       expect(page).to have_content('Title can\'t be blank')
       expect(page).to have_content('Content can\'t be blank')
     end
 
     scenario 'without title' do
-      visit new_task_path
-      fill_in 'Title', with: ''
-      click_button 'Create Task'
-
+      create_task(nil, content)
       expect(page).to have_content('Title can\'t be blank')
     end
 
     scenario 'without content' do
-      visit new_task_path
-      fill_in 'Content', with: ''
-      click_button 'Create Task'
-
+      create_task(title, nil)
       expect(page).to have_content('Content can\'t be blank')
     end
+  end
+
+  private
+  def create_task(title, content)
+    visit new_task_path
+    fill_in '任務名稱', with: title
+    fill_in '內容', with: content
+    click_button '新增任務'
   end
 
 end
