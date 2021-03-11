@@ -7,10 +7,10 @@
 
 <table id = "task_index_table">
   <thead>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Start_time</th>
-    <th>End_time</th>
+    <th>任務名稱</th>
+    <th>內容</th>
+    <th>開始時間</th>
+    <th>結束時間</th>
   </thead>
 
   <tbody>
@@ -20,9 +20,9 @@
         <td><%= task.content %></td>
         <td><%= task.start_time %></td>
         <td><%= task.end_time %></td>
-        <td><%= link_to 'show', task_path(task) %></td>
-        <td><%= link_to 'edit', edit_task_path(task) %></td>
-        <td><%= link_to 'delete', task_path(task), method: 'delete' %></td>
+        <td><%= link_to '詳細內容', task_path(task) %></td>
+        <td><%= link_to '更新', edit_task_path(task) %></td>
+        <td><%= link_to '刪除', task_path(task), method: 'delete' %></td>
       </tr>
     <% end %>
   </tbody>

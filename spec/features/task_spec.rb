@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.feature 'Tasks', type: :feature do
   let(:title) { Faker::Lorem.sentence }
   let(:content) { Faker::Lorem.paragraph }
+  before :each do
+    Task.delete_all
+  end
 
   describe 'user visit task index page' do
     scenario 'tasks show on index page' do
@@ -20,6 +23,7 @@ RSpec.feature 'Tasks', type: :feature do
   describe 'user creates a new task' do
     scenario 'with title and content' do
       create_task(title, content)
+      expect(Task.all.size).to eq 1
       expect(page).to have_content('新增任務成功！')
       expect(page).to have_content(title)
       expect(page).to have_content(content)
@@ -74,25 +78,39 @@ RSpec.feature 'Tasks', type: :feature do
       expect(page).to have_content('Title can\'t be blank')
     end
 
-    it 'without title' do
+    it 'without content' do
       edit_task(new_title ,nil)
       expect(page).to have_content('Content can\'t be blank')
+    end
+  end
+
+  describe 'delete a task' do
+    it do
+      create_task(title, content)
+      visit tasks_path
+      click_on '刪除'
+      expect(Task.all.size).to eq 0
+      expect(page).to have_content('任務已刪除！')
     end
   end
 
   private
   def create_task(title, content)
     visit new_task_path
-    fill_in '任務名稱', with: title
-    fill_in '內容', with: content
-    click_button '新增任務'
+    within('form.task_form') do
+      fill_in '任務名稱', with: title
+      fill_in '內容', with: content
+      click_button '新增任務'
+    end
   end
 
   def edit_task(new_title = nil, new_content = nil)
     visit edit_task_path(task)
-    fill_in '任務名稱', with: new_title
-    fill_in '內容', with: new_content
-    click_button '更新任務'
+    within('form.task_form') do
+      fill_in '任務名稱', with: new_title
+      fill_in '內容', with: new_content
+      click_button '更新任務'
+    end
   end
 
 end
