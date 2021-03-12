@@ -10,5 +10,7 @@ install:
   - bundle install
 script:
   - bundle exec rake db:migrate:reset RAILS_ENV=test
+  - yarn add @rails/webpacker
+  - bundle update webpacker
   - bundle exec rails webpacker:compile
   - bundle exec rails spec
