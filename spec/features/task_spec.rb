@@ -5,6 +5,7 @@ RSpec.feature 'Tasks', type: :feature do
   let(:content) { Faker::Lorem.paragraph }
   let(:task) { create(:task, title: title, content: content) }
 
+
   describe 'user visit task index page' do
     scenario 'tasks show on index page' do
       3.times { create(:task) }
