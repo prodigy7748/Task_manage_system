@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      task: 'Task'
+    attributes:
+      task:
+        title: 'Title'
+        content: 'Content'
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: 'Can't be blank!'
+            content:
+              blank: 'Can't be blank!'
