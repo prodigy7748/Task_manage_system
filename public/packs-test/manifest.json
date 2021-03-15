@@ -1,14 +1,19 @@
 {
-  "application.js": "/packs-test/js/application-3c43a2bcb02b1e77150e.js",
-  "application.js.map": "/packs-test/js/application-3c43a2bcb02b1e77150e.js.map",
+  "application.js": "/packs-test/js/application-395afa64ce26f3ee5f8f.js",
   "entrypoints": {
     "application": {
-      "js": [
-        "/packs-test/js/application-3c43a2bcb02b1e77150e.js"
-      ],
-      "js.map": [
-        "/packs-test/js/application-3c43a2bcb02b1e77150e.js.map"
-      ]
+      "assets": {
+        "js": [
+          "/packs-test/js/runtime-5447d86e2953a6ff366a.js",
+          "/packs-test/js/vendors-node_modules_rails_activestorage_app_assets_javascripts_activestorage_js-node_modules-8bd44b-2b07f224a8cd4685c2ea.js",
+          "/packs-test/js/application-395afa64ce26f3ee5f8f.js"
+        ]
+      }
     }
-  }
+  },
+  "js/application-395afa64ce26f3ee5f8f.js.map": "/packs-test/js/application-395afa64ce26f3ee5f8f.js.map",
+  "js/runtime-5447d86e2953a6ff366a.js.map": "/packs-test/js/runtime-5447d86e2953a6ff366a.js.map",
+  "js/vendors-node_modules_rails_activestorage_app_assets_javascripts_activestorage_js-node_modules-8bd44b-2b07f224a8cd4685c2ea.js": "/packs-test/js/vendors-node_modules_rails_activestorage_app_assets_javascripts_activestorage_js-node_modules-8bd44b-2b07f224a8cd4685c2ea.js",
+  "js/vendors-node_modules_rails_activestorage_app_assets_javascripts_activestorage_js-node_modules-8bd44b-2b07f224a8cd4685c2ea.js.map": "/packs-test/js/vendors-node_modules_rails_activestorage_app_assets_javascripts_activestorage_js-node_modules-8bd44b-2b07f224a8cd4685c2ea.js.map",
+  "runtime.js": "/packs-test/js/runtime-5447d86e2953a6ff366a.js"
 }

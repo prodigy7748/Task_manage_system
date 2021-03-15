@@ -6,24 +6,24 @@
 
 <%= form_for(task, html: { class: 'task_form' }) do |form| %>
   <div>
-    <%= form.label :title, "任務名稱" %><br>
-    <%= form.text_field :title %>
+    <%= form.label :title, I18n.t("tasks.table.title") %><br>
+    <%= form.text_field :title, placeholder: I18n.t("tasks.form.placeholder.title") %>
   </div>
 
   <div>
-    <%= form.label :content, "內容" %><br>
-    <%= form.text_area :content %>
+    <%= form.label :content, I18n.t("tasks.table.content") %><br>
+    <%= form.text_area :content, placeholder: I18n.t("tasks.form.placeholder.content") %>
   </div>
 
   <div>
-    <%= form.label :start_time %><br>
+    <%= form.label :start_time, I18n.t("tasks.table.start_time") %><br>
     <%= form.datetime_field :start_time %>
   </div>
 
   <div>
-    <%= form.label :end_time %><br>
+    <%= form.label :end_time, I18n.t("tasks.table.end_time") %><br>
     <%= form.datetime_field :end_time %>
   </div>
 
-  <%= form.submit "#{action}任務" %>
+  <%= form.submit %>
 <% end %>
