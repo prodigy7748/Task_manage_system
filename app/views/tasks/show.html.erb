@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @task.title %></td>
+      <td><%= @task.content %></td>
+      <td><%= link_to 'edit', edit_task_path(@task) %></td>
+      <td><%= link_to 'delete', task_path(@task), method: 'delete' %></td>
+    </tr>
+  </tbody>
+</table>
