@@ -20,25 +20,25 @@ RSpec.feature 'Tasks', type: :feature do
   describe 'user creates a new task' do
     scenario 'with title and content' do
       expect{ create_task(title: title, content: content) }.to change { Task.count }.by(1)
-      expect(page).to have_content('新增任務成功！')
+      expect(page).to have_content(I18n.t('tasks.create.notice'))
       expect(page).to have_content(title)
       expect(page).to have_content(content)
     end
 
     scenario 'without title and content' do
       create_task()
-      expect(page).to have_content('Title can\'t be blank')
-      expect(page).to have_content('Content can\'t be blank')
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.title')} #{I18n.t('activerecord.errors.models.task.attributes.title.blank')}")
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.content')} #{I18n.t('activerecord.errors.models.task.attributes.content.blank')}")
     end
 
     scenario 'without title' do
       create_task(content: content)
-      expect(page).to have_content('Title can\'t be blank')
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.title')} #{I18n.t('activerecord.errors.models.task.attributes.title.blank')}")
     end
 
     scenario 'without content' do
       create_task(title: title)
-      expect(page).to have_content('Content can\'t be blank')
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.content')} #{I18n.t('activerecord.errors.models.task.attributes.content.blank')}")
     end
   end
 
@@ -62,18 +62,18 @@ RSpec.feature 'Tasks', type: :feature do
 
     it 'without title and content' do
       edit_task()
-      expect(page).to have_content('Title can\'t be blank')
-      expect(page).to have_content('Content can\'t be blank')
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.title')} #{I18n.t('activerecord.errors.models.task.attributes.title.blank')}")
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.content')} #{I18n.t('activerecord.errors.models.task.attributes.content.blank')}")
     end
 
     it 'without title' do
       edit_task(content: new_content)
-      expect(page).to have_content('Title can\'t be blank')
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.title')} #{I18n.t('activerecord.errors.models.task.attributes.title.blank')}")
     end
 
     it 'without content' do
       edit_task(title: new_title)
-      expect(page).to have_content('Content can\'t be blank')
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.content')} #{I18n.t('activerecord.errors.models.task.attributes.content.blank')}")
     end
   end
 
@@ -83,7 +83,7 @@ RSpec.feature 'Tasks', type: :feature do
       visit tasks_path
       click_on '刪除'
       expect(Task.all.size).to eq 0
-      expect(page).to have_content('任務已刪除！')
+      expect(page).to have_content(I18n.t('.tasks.destroy.notice'))
     end
   end
 

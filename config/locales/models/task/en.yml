@@ -10,7 +10,4 @@ en:
       models:
         task:
           attributes:
-            title:
-              blank: 'CAN NOT BE BLANK!'
-            content:
-              blank: 'CAN NOT BE BLANK!'
+            blank: 'CAN NOT BE BLANK!'
