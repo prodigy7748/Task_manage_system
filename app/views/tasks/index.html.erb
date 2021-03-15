@@ -1,16 +1,16 @@
-<h1>Task</h1>
+<h1><%= I18n.t("tasks.heading.index") %></h1>
 <div>
-  <%= link_to 'new task', new_task_path %>
+  <%= link_to I18n.t("tasks.link.create_a_task"), new_task_path %>
 </div>
 
 <br>
 
 <table id = "task_index_table">
   <thead>
-    <th>任務名稱</th>
-    <th>內容</th>
-    <th>開始時間</th>
-    <th>結束時間</th>
+    <th><%= I18n.t("tasks.table.title") %></th>
+    <th><%= I18n.t("tasks.table.content") %></th>
+    <th><%= I18n.t("tasks.table.start_time") %></th>
+    <th><%= I18n.t("tasks.table.end_time") %></th>
   </thead>
 
   <tbody>
@@ -20,9 +20,9 @@
         <td><%= task.content %></td>
         <td><%= task.start_time %></td>
         <td><%= task.end_time %></td>
-        <td><%= link_to '詳細內容', task_path(task) %></td>
-        <td><%= link_to '更新', edit_task_path(task) %></td>
-        <td><%= link_to '刪除', task_path(task), method: 'delete' %></td>
+        <td><%= link_to I18n.t("tasks.link.view_a_task"), task %></td>
+        <td><%= link_to I18n.t("tasks.link.edit_a_task"), edit_task_path(task) %></td>
+        <td><%= link_to I18n.t("tasks.link.delete_a_task"), task, data: { confirm: I18n.t("are_you_sure") }, method: 'delete' %></td>
       </tr>
     <% end %>
   </tbody>

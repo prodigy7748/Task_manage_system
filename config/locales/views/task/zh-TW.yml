@@ -7,6 +7,7 @@ zh-TW:
       edit_a_task: '更新任務'
     link:
       create_a_task: '新增任務'
+      view_a_task: '詳細內容'
       edit_a_task: '更新任務'
       delete_a_task: '刪除任務'
     table:
@@ -18,6 +19,6 @@ zh-TW:
       content: '內容'
     form:
       placeholder:
-        title: "例：打掃房間"
-        content: "例：把垃圾拿出去外面丟"
+        title: '例：打掃房間'
+        content: '例：把垃圾拿出去外面丟'
     back_to_task_list: '回到任務清單'
