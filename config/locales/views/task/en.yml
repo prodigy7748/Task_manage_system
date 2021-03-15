@@ -7,6 +7,7 @@ en:
       edit_a_task: 'Edit Task'
     link:
       create_a_task: 'Create a new task'
+      view_a_task: 'Show'
       edit_a_task: 'Edit'
       delete_a_task: 'Delete'
     table:
