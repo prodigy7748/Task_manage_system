@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :find_task, only:[:edit, :update, :destroy, :show]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.order(sort_by)
   end
 
   def new
@@ -45,5 +45,18 @@ class TasksController < ApplicationController
 
   def find_task
     @task = Task.find(params[:id])
+  end
+
+  def sort_by
+    case params[:sort]
+    when "end_time_desc"
+      sort_by = "end_time DESC"
+    when "end_time_asc"
+      sort_by = "end_time ASC"
+    when "created_at_asc"
+      sort_by = "created_at ASC"
+    else
+      sort_by = "created_at DESC"
+    end
   end
 end
