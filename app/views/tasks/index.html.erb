@@ -1,19 +1,19 @@
-<h1><%= I18n.t("tasks.heading.index") %></h1>
+<h1><%= t("tasks.heading.index") %></h1>
 <div>
-  <%= link_to I18n.t("tasks.link.create_a_task"), new_task_path %>
+  <%= link_to t("tasks.link.create_a_task"), new_task_path %>
 </div>
 
 <br>
 
 <table id = "task_index_table">
   <thead>
-    <th><%= I18n.t("tasks.table.title") %></th>
-    <th><%= I18n.t("tasks.table.content") %></th>
-    <th><%= I18n.t("tasks.table.priority") %></th>
-    <th><%= I18n.t("tasks.table.status") %></th>
-    <th><%= I18n.t("tasks.table.start_time") %></th>
-    <th><%= sortable("end_time", I18n.t("tasks.table.end_time")) %></th>
-    <th><%= sortable("created_at", I18n.t("activerecord.attributes.task.created_at")) %></th>
+    <th><%= t("tasks.table.title") %></th>
+    <th><%= t("tasks.table.content") %></th>
+    <th><%= t("tasks.table.priority") %></th>
+    <th><%= t("tasks.table.status") %></th>
+    <th><%= t("tasks.table.start_time") %></th>
+    <th><%= sortable("end_time", t("tasks.table.end_time")) %></th>
+    <th><%= sortable("created_at", t("activerecord.attributes.task.created_at")) %></th>
   </thead>
 
   <tbody>
@@ -21,13 +21,13 @@
       <tr>
         <td><%= link_to task.title, task %></td>
         <td><%= task.content %></td>
-        <td><%= task.priority %></td>
-        <td><%= task.status %></td>
+        <td><%= t("tasks.priority.#{task.priority}") %></td>
+        <td><%= t("tasks.status.#{task.status}") %></td>
         <td><%= task.start_time.strftime("%Y/%m/%d %H:%M") %></td>
         <td><%= task.end_time.strftime("%Y/%m/%d %H:%M") %></td>
         <td><%= task.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-        <td><%= link_to I18n.t("tasks.link.edit_a_task"), edit_task_path(task) %></td>
-        <td><%= link_to I18n.t("tasks.link.delete_a_task"), task, data: { confirm: I18n.t("are_you_sure") }, method: 'delete' %></td>
+        <td><%= link_to t("tasks.link.edit_a_task"), edit_task_path(task) %></td>
+        <td><%= link_to t("tasks.link.delete_a_task"), task, data: { confirm: t("are_you_sure") }, method: 'delete' %></td>
       </tr>
     <% end %>
   </tbody>

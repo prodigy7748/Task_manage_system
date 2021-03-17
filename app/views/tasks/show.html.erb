@@ -1,25 +1,25 @@
-<h1><%= I18n.t("tasks.heading.view_a_task") %></h1>
-<%= link_to I18n.t("tasks.back_to_task_list"), tasks_path %>
+<h1><%= t("tasks.heading.view_a_task") %></h1>
+<%= link_to t("tasks.back_to_task_list"), tasks_path %>
 
 <table>
   <thead>
-    <th><%= I18n.t("tasks.table.title") %></th>
-    <th><%= I18n.t("tasks.table.start_time") %></th>
-    <th><%= I18n.t("tasks.table.end_time") %></th>
-    <th><%= I18n.t("tasks.table.priority") %></th>
-    <th><%= I18n.t("tasks.table.status") %></th>
-    <th><%= I18n.t("tasks.table.content") %></th>
+    <th><%= t("tasks.table.title") %></th>
+    <th><%= t("tasks.table.start_time") %></th>
+    <th><%= t("tasks.table.end_time") %></th>
+    <th><%= t("tasks.table.priority") %></th>
+    <th><%= t("tasks.table.status") %></th>
+    <th><%= t("tasks.table.content") %></th>
   </thead>
   <tbody>
     <tr>
       <td><%= @task.title %>
       <td><%= @task.start_time.strftime("%Y/%m/%d %H:%M") %></td>
       <td><%= @task.end_time.strftime("%Y/%m/%d %H:%M") %></td>
-      <td><%= @task.priority %></td>
-      <td><%= @task.status %></td>
+      <td><%= t("tasks.priority.#{@task.priority}") %></td>
+      <td><%= t("tasks.status.#{@task.status}") %></td>
       <td><%= @task.content %></td>
-      <td><%= link_to I18n.t("tasks.link.edit_a_task"), edit_task_path(@task) %></td>
-      <td><%= link_to I18n.t("tasks.link.delete_a_task"), @task, data: { confirm: I18n.t("are_you_sure") }, method: 'delete' %></td>
+      <td><%= link_to t("tasks.link.edit_a_task"), edit_task_path(@task) %></td>
+      <td><%= link_to t("tasks.link.delete_a_task"), @task, data: { confirm: t("are_you_sure") }, method: 'delete' %></td>
     </tr>
   </tbody>
 </table>
