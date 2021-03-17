@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.feature 'Tasks', type: :feature do
   let(:title) { Faker::Lorem.sentence }
   let(:content) { Faker::Lorem.paragraph }
+  let(:end_time) { Faker::Time.between(from: DateTime.now - 3.day ,to: DateTime.now - 2.day) }
   let(:end_time) { Faker::Time.between(from: DateTime.now - 1.day, to: DateTime.now) }
-  let(:task) { create(:task, title: title, content: content, end_time: end_time) }
+  let(:task) { create(:task, title: title, content: content, start_time: start_time, end_time: end_time) }
 
 
   describe 'user visit task index page' do
