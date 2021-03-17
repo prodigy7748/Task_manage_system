@@ -6,6 +6,8 @@ en:
       task:
         title: "Title"
         content: "Content"
+        created_at: "Created_at"
+        end_at: "End_time"
     errors:
       models:
         task:

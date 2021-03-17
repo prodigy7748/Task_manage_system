@@ -9,18 +9,17 @@
   <thead>
     <th><%= I18n.t("tasks.table.title") %></th>
     <th><%= I18n.t("tasks.table.content") %></th>
-    <th><%= I18n.t("tasks.table.start_time") %></th>
-    <th><%= I18n.t("tasks.table.end_time") %></th>
+    <th><%= sortable("created_at", I18n.t("activerecord.attributes.task.created_at")) %></th>
+    <th><%= sortable("end_time", I18n.t("tasks.table.end_time")) %></th>
   </thead>
 
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.title %></td>
+        <td><%= link_to task.title, task %></td>
         <td><%= task.content %></td>
-        <td><%= task.start_time %></td>
-        <td><%= task.end_time %></td>
-        <td><%= link_to I18n.t("tasks.link.view_a_task"), task %></td>
+        <td><%= task.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td><%= task.end_time.strftime("%Y/%m/%d %H:%M") %></td>
         <td><%= link_to I18n.t("tasks.link.edit_a_task"), edit_task_path(task) %></td>
         <td><%= link_to I18n.t("tasks.link.delete_a_task"), task, data: { confirm: I18n.t("are_you_sure") }, method: 'delete' %></td>
       </tr>

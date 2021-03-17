@@ -6,6 +6,8 @@ zh-TW:
       task:
         title: '任務名稱'
         content: '內容'
+        created_at: "建立時間"
+        end_at: "結束時間"
     errors:
         models:
           task:
