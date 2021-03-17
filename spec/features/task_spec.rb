@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.feature 'Tasks', type: :feature do
   let(:title) { Faker::Lorem.sentence }
   let(:content) { Faker::Lorem.paragraph }
-  let(:task) { create(:task, title: title, content: content) }
+  let(:end_time) { Faker::Time.between(from: DateTime.now - 1.day, to: DateTime.now) }
+  let(:task) { create(:task, title: title, content: content, end_time: end_time) }
 
 
   describe 'user visit task index page' do
@@ -19,7 +20,7 @@ RSpec.feature 'Tasks', type: :feature do
 
   describe 'user creates a new task' do
     scenario 'with title and content' do
-      expect{ create_task(title: title, content: content) }.to change { Task.count }.by(1)
+      expect{ create_task(title: title, content: content, end_time: end_time) }.to change { Task.count }.by(1)
       expect(page).to have_content(I18n.t('tasks.create.notice'))
       expect(page).to have_content(title)
       expect(page).to have_content(content)
@@ -79,7 +80,7 @@ RSpec.feature 'Tasks', type: :feature do
 
   describe 'delete a task' do
     it do
-      create_task(title: title, content: content)
+      create(:task)
       visit tasks_path
       click_on '刪除'
       expect(Task.all.size).to eq 0
@@ -87,17 +88,45 @@ RSpec.feature 'Tasks', type: :feature do
     end
   end
 
-  # describe 'order by created_at desc' do
-  #   3.times {create(:task) }
-  #   expect(Task.)
-  # end
+  describe 'order by created_at desc' do
+    before :each do 
+      @tasks = []
+      3.times do
+        task = create(:task)
+        @tasks << task
+      end
+      visit tasks_path
+    end
+
+    it 'order by created_at asc' do
+      within('table') do
+        click_on '建立時間'
+        expect(page).to have_content('建立時間▲')
+        expect(page).to have_content(
+          /#{@tasks[0][:title]}+#{@tasks[1][:title]}+#{@tasks[2][:title]}/
+        )
+      end
+    end
+
+    it 'order by created_at desc' do
+      within('table') do
+        click_on '建立時間'
+        click_on '建立時間▲'
+        expect(page).to have_content('建立時間▼')
+        expect(page).to have_content(
+          /#{@tasks[2][:title]}+#{@tasks[1][:title]}+#{@tasks[0][:title]}/
+        )
+      end
+    end
+  end
 
   private
-  def create_task(title: nil, content: nil)
+  def create_task(title: nil, content: nil, end_time: nil)
     visit new_task_path
     within('form.task_form') do
       fill_in '任務名稱', with: title
       fill_in '內容', with: content
+      fill_in '結束時間', with: end_time
       click_button '新增任務'
     end
   end

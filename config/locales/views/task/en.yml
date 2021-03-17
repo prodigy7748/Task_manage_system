@@ -21,4 +21,12 @@ en:
       placeholder:
         title: 'e.g. Clean my room'
         content: 'e.g. take garbage out of the bin'
+    priority:
+      low: 'Low'
+      medium: 'Medium'
+      high: 'High'
+    status:
+      pending: 'Pending'
+      processing: 'Processing'
+      completed: 'Completed'
     back_to_task_list: 'Back to Task List'
