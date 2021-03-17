@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Tasks', type: :feature do
   let(:title) { Faker::Lorem.sentence }
   let(:content) { Faker::Lorem.paragraph }
-  let(:end_time) { Faker::Time.between(from: DateTime.now - 3.day ,to: DateTime.now - 2.day) }
+  let(:start_time) { Faker::Time.between(from: DateTime.now - 3.day ,to: DateTime.now - 2.day) }
   let(:end_time) { Faker::Time.between(from: DateTime.now - 1.day, to: DateTime.now) }
   let(:task) { create(:task, title: title, content: content, start_time: start_time, end_time: end_time) }
 
@@ -21,7 +21,7 @@ RSpec.feature 'Tasks', type: :feature do
 
   describe 'user creates a new task' do
     scenario 'with title and content' do
-      expect{ create_task(title: title, content: content, end_time: end_time) }.to change { Task.count }.by(1)
+      expect{ create_task(title: title, content: content, start_time: start_time, end_time: end_time) }.to change { Task.count }.by(1)
       expect(page).to have_content(I18n.t('tasks.create.notice'))
       expect(page).to have_content(title)
       expect(page).to have_content(content)
@@ -122,13 +122,14 @@ RSpec.feature 'Tasks', type: :feature do
   end
 
   private
-  def create_task(title: nil, content: nil, end_time: nil)
+  def create_task(title: nil, content: nil, start_time: nil, end_time: nil)
     visit new_task_path
     within('form.task_form') do
       fill_in '任務名稱', with: title
       fill_in '內容', with: content
+      fill_in '開始時間', with: start_time
       fill_in '結束時間', with: end_time
-      click_button '新增任務'
+      find('input[name="commit"]').click
     end
   end
 
@@ -137,7 +138,7 @@ RSpec.feature 'Tasks', type: :feature do
     within('form.task_form') do
       fill_in '任務名稱', with: title
       fill_in '內容', with: content
-      click_button '更新任務'
+      find('input[name="commit"]').click
     end
   end
 end
