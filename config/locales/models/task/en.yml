@@ -6,10 +6,19 @@ en:
       task:
         title: "Title"
         content: "Content"
+        start_time: "Start time"
+        end_time: "End time"
         created_at: "Created_at"
         end_at: "End_time"
     errors:
       models:
         task:
           attributes:
-            blank: 'CAN NOT BE BLANK!'
+            title:
+              blank: 'CAN NOT BE BLANK!'
+            start_time:
+              blank: 'CAN NOT BE BLANK!'
+            end_time:
+              blank: 'CAN NOT BE BLANK!'
+            content:
+              blank: 'CAN NOT BE BLANK!'

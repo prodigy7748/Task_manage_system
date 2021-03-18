@@ -12,7 +12,7 @@ zh-TW:
       delete_a_task: '刪除任務'
     table:
       title: '任務名稱'
-      priority: '優先度'
+      priority: '重要性'
       start_time: '開始時間'
       end_time: '結束時間'
       status: '目前狀態'
@@ -21,4 +21,12 @@ zh-TW:
       placeholder:
         title: '例：打掃房間'
         content: '例：把垃圾拿出去外面丟'
+    priority:
+      low: '低'
+      medium: '中'
+      high: '高'
+    status:
+      pending: '待處理'
+      processing: '進行中'
+      completed: '已完成'
     back_to_task_list: '回到任務清單'
